@@ -19,8 +19,10 @@ var settings = {
 server.on('published',(packet)=>{
     if(packet.payload.toString().slice(0,1) != '{' && packet.payload.toString().slice(0,4) != 'mqtt')
     {
+        console.log(packet.topic)
         User.create({
             msg:packet.payload.toString(),
+            topic:packet.topic
             
         },
         function (err, user) {
